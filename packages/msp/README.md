@@ -26,6 +26,13 @@ npm install -g superops-msp
 
 ### Claude Code
 
+```bash
+claude mcp add superops-msp -- npx -y superops-msp
+```
+
+<details>
+<summary>Or manually add to settings</summary>
+
 Add to `~/.claude/settings.json`:
 
 ```json
@@ -38,6 +45,7 @@ Add to `~/.claude/settings.json`:
   }
 }
 ```
+</details>
 
 ### Claude Desktop
 
