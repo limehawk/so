@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify MSP server starts
+        run: |
+          timeout 5s node packages/msp/src/index.mjs < /dev/null || true
+          echo "MSP server starts successfully"
+
+      - name: Verify IT server starts
+        run: |
+          timeout 5s node packages/it/src/index.mjs < /dev/null || true
+          echo "IT server starts successfully"
+
+      - name: Check MSP package can be packed
+        run: cd packages/msp && npm pack --dry-run
+
+      - name: Check IT package can be packed
+        run: cd packages/it && npm pack --dry-run

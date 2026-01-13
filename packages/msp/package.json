@@ -1,0 +1,41 @@
+{
+  "name": "superops-msp",
+  "version": "1.0.0",
+  "description": "MCP server for SuperOps MSP GraphQL API documentation",
+  "type": "module",
+  "main": "src/index.mjs",
+  "bin": {
+    "superops-msp": "src/index.mjs"
+  },
+  "scripts": {
+    "start": "node src/index.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "superops",
+    "msp",
+    "graphql",
+    "api",
+    "claude",
+    "ai"
+  ],
+  "author": "Limehawk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Limehawk/superops-mcp.git",
+    "directory": "packages/msp"
+  },
+  "homepage": "https://github.com/Limehawk/superops-mcp/tree/main/packages/msp#readme",
+  "bugs": {
+    "url": "https://github.com/Limehawk/superops-mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2"
+  },
+  "files": [
+    "src/",
+    "docs/api-index.json",
+    "docs/introduction.json"
+  ]
+}

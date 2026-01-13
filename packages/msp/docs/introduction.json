@@ -1,0 +1,9 @@
+{
+  "title": "SuperOps MSP GraphQL API",
+  "description": "Welcome to the Superops MSP GraphQL API reference! This reference includes the complete set of GraphQL types, queries, mutations, and their parameters. For more tutorial-oriented API documentation, please check out our API Guide",
+  "contact": "support@superops.com",
+  "endpoints": {
+    "us": "https://api.superops.ai/msp",
+    "eu": "https://euapi.superops.ai/msp"
+  }
+}

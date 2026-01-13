@@ -1,0 +1,41 @@
+{
+  "name": "superops-it",
+  "version": "1.0.0",
+  "description": "MCP server for SuperOps IT Teams GraphQL API documentation",
+  "type": "module",
+  "main": "src/index.mjs",
+  "bin": {
+    "superops-it": "src/index.mjs"
+  },
+  "scripts": {
+    "start": "node src/index.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "superops",
+    "it-teams",
+    "graphql",
+    "api",
+    "claude",
+    "ai"
+  ],
+  "author": "Limehawk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Limehawk/superops-mcp.git",
+    "directory": "packages/it"
+  },
+  "homepage": "https://github.com/Limehawk/superops-mcp/tree/main/packages/it#readme",
+  "bugs": {
+    "url": "https://github.com/Limehawk/superops-mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2"
+  },
+  "files": [
+    "src/",
+    "docs/api-index.json",
+    "docs/introduction.json"
+  ]
+}
