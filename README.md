@@ -37,10 +37,7 @@ For **Internal IT Departments** - IT teams within a single organization.
 claude mcp add superops-msp -- npx -y superops-msp
 ```
 
-<details>
-<summary>Or manually add to Claude Code settings</summary>
-
-Add to `~/.claude/settings.json`:
+Or add to `~/.claude/settings.json`:
 
 ```json
 {
@@ -52,7 +49,6 @@ Add to `~/.claude/settings.json`:
   }
 }
 ```
-</details>
 
 ### For IT Teams Users
 
@@ -60,10 +56,7 @@ Add to `~/.claude/settings.json`:
 claude mcp add superops-it -- npx -y superops-it
 ```
 
-<details>
-<summary>Or manually add to Claude Code settings</summary>
-
-Add to `~/.claude/settings.json`:
+Or add to `~/.claude/settings.json`:
 
 ```json
 {
@@ -75,7 +68,6 @@ Add to `~/.claude/settings.json`:
   }
 }
 ```
-</details>
 
 ## Available Tools
 
