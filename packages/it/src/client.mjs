@@ -72,8 +72,12 @@ export class SuperOpsClient {
     if (!config.apiKey) {
       throw new Error('SUPEROPS_API_KEY is required');
     }
+    if (!config.subdomain) {
+      throw new Error('SUPEROPS_SUBDOMAIN is required');
+    }
 
     this.apiKey = config.apiKey;
+    this.subdomain = config.subdomain;
     this.region = config.region || 'us';
     this.timeout = config.timeout || DEFAULT_TIMEOUT_MS;
     this.readOnly = config.readOnly ?? false;
@@ -102,6 +106,7 @@ export class SuperOpsClient {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.apiKey}`,
+            'CustomerSubDomain': this.subdomain,
             'User-Agent': 'superops-it-mcp/1.0'
           },
           body: JSON.stringify({ query: operation, variables }),

@@ -22,9 +22,10 @@ let apiData = null;
 let client = null;
 
 function getClient() {
-    if (!client && process.env.SUPEROPS_API_KEY) {
+    if (!client && process.env.SUPEROPS_API_KEY && process.env.SUPEROPS_SUBDOMAIN) {
         client = new SuperOpsClient({
             apiKey: process.env.SUPEROPS_API_KEY,
+            subdomain: process.env.SUPEROPS_SUBDOMAIN,
             region: process.env.SUPEROPS_REGION,
             timeout: parseInt(process.env.SUPEROPS_TIMEOUT) || undefined,
             readOnly: process.env.SUPEROPS_READ_ONLY === 'true'
@@ -283,7 +284,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                     return {
                         content: [{
                             type: 'text',
-                            text: 'API execution requires SUPEROPS_API_KEY environment variable.\n\nGet your API key from SuperOps Admin > API Settings.'
+                            text: 'API execution requires SUPEROPS_API_KEY and SUPEROPS_SUBDOMAIN environment variables.\n\nGet your API key from SuperOps Admin > API Settings.\nYour subdomain is the prefix in your SuperOps URL (e.g., "acme" from acme.superops.ai).'
                         }],
                         isError: true
                     };

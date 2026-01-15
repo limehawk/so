@@ -55,7 +55,11 @@ Or add to `~/.claude/settings.json`:
   "mcpServers": {
     "superops-it": {
       "command": "bunx",
-      "args": ["superops-it"]
+      "args": ["superops-it"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -68,7 +72,11 @@ Or with npx:
   "mcpServers": {
     "superops-it": {
       "command": "npx",
-      "args": ["-y", "superops-it"]
+      "args": ["-y", "superops-it"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -83,7 +91,11 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
   "mcpServers": {
     "superops-it": {
       "command": "bunx",
-      "args": ["superops-it"]
+      "args": ["superops-it"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -96,7 +108,11 @@ Or with npx:
   "mcpServers": {
     "superops-it": {
       "command": "npx",
-      "args": ["-y", "superops-it"]
+      "args": ["-y", "superops-it"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -160,9 +176,15 @@ execute_graphql({
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `SUPEROPS_API_KEY` | Yes | Your SuperOps API key |
+| `SUPEROPS_SUBDOMAIN` | Yes | Your SuperOps subdomain (e.g., `acme` from `acme.superops.ai`) |
 | `SUPEROPS_REGION` | No | `us` (default) or `eu` |
 | `SUPEROPS_TIMEOUT` | No | Request timeout in ms (default: 30000) |
 | `SUPEROPS_READ_ONLY` | No | Set to `true` to block mutations |
+
+**API limits and notes:**
+- Maximum 800 API requests per minute
+- Date/time values must be in UTC timezone with ISO format (e.g., `2022-04-10T10:15:30`)
+- Use `null` to clear/reset attribute values
 
 ## API Endpoints
 

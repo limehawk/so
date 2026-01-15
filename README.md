@@ -52,7 +52,11 @@ Or add to `~/.claude/settings.json`:
   "mcpServers": {
     "superops-msp": {
       "command": "bunx",
-      "args": ["superops-msp"]
+      "args": ["superops-msp"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -65,7 +69,11 @@ Or with npx:
   "mcpServers": {
     "superops-msp": {
       "command": "npx",
-      "args": ["-y", "superops-msp"]
+      "args": ["-y", "superops-msp"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -90,7 +98,11 @@ Or add to `~/.claude/settings.json`:
   "mcpServers": {
     "superops-it": {
       "command": "bunx",
-      "args": ["superops-it"]
+      "args": ["superops-it"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
@@ -103,7 +115,11 @@ Or with npx:
   "mcpServers": {
     "superops-it": {
       "command": "npx",
-      "args": ["-y", "superops-it"]
+      "args": ["-y", "superops-it"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
