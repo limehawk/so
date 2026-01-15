@@ -1,6 +1,6 @@
 {
   "name": "superops-msp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server for SuperOps MSP GraphQL API documentation",
   "type": "module",
   "main": "src/index.mjs",
@@ -36,6 +36,7 @@
   "files": [
     "src/",
     "docs/api-index.json",
-    "docs/introduction.json"
+    "docs/introduction.json",
+    ".env.example"
   ]
 }
