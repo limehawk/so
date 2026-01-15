@@ -1,6 +1,13 @@
 # Dependencies
 node_modules/
 
+# Environment (contains API keys)
+.env
+.env.local
+
+# Project docs (internal planning)
+/docs/
+
 # Logs
 *.log
 npm-debug.log*
