@@ -8,6 +8,7 @@ import {
 import { readFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { SuperOpsClient, SuperOpsAPIError } from './client.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SERVER_NAME = 'superops-it';
@@ -16,6 +17,21 @@ const PRODUCT_NAME = 'SuperOps IT Teams';
 
 // API data cache
 let apiData = null;
+
+// API client (lazy initialization)
+let client = null;
+
+function getClient() {
+    if (!client && process.env.SUPEROPS_API_KEY) {
+        client = new SuperOpsClient({
+            apiKey: process.env.SUPEROPS_API_KEY,
+            region: process.env.SUPEROPS_REGION,
+            timeout: parseInt(process.env.SUPEROPS_TIMEOUT) || undefined,
+            readOnly: process.env.SUPEROPS_READ_ONLY === 'true'
+        });
+    }
+    return client;
+}
 
 async function loadApiData() {
     if (apiData) return apiData;
@@ -98,6 +114,24 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
                         }
                     },
                     required: ['type']
+                }
+            },
+            {
+                name: 'execute_graphql',
+                description: `Execute a GraphQL query or mutation against the ${PRODUCT_NAME} API. Requires SUPEROPS_API_KEY environment variable. Use search_superops_api and get_superops_operation to discover available operations.`,
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        operation: {
+                            type: 'string',
+                            description: 'The GraphQL query or mutation to execute'
+                        },
+                        variables: {
+                            type: 'object',
+                            description: 'Variables for the operation (optional)'
+                        }
+                    },
+                    required: ['operation']
                 }
             }
         ]
@@ -240,6 +274,55 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                         text: JSON.stringify(result, null, 2)
                     }]
                 };
+            }
+
+            case 'execute_graphql': {
+                const apiClient = getClient();
+
+                if (!apiClient) {
+                    return {
+                        content: [{
+                            type: 'text',
+                            text: 'API execution requires SUPEROPS_API_KEY environment variable.\n\nGet your API key from SuperOps Admin > API Settings.'
+                        }],
+                        isError: true
+                    };
+                }
+
+                try {
+                    const result = await apiClient.execute(
+                        args.operation,
+                        args.variables || {}
+                    );
+
+                    return {
+                        content: [{
+                            type: 'text',
+                            text: JSON.stringify(result, null, 2)
+                        }]
+                    };
+                } catch (error) {
+                    let message;
+
+                    if (error instanceof SuperOpsAPIError) {
+                        if (error.isAuthError()) {
+                            message = 'Authentication failed. Check your SUPEROPS_API_KEY.';
+                        } else if (error.isRateLimited()) {
+                            message = 'Rate limited after retries. Try again later.';
+                        } else if (error.isGraphQLError()) {
+                            message = `GraphQL Error: ${error.message}`;
+                        } else {
+                            message = `API Error (${error.status}): ${error.message}`;
+                        }
+                    } else {
+                        message = error.message;
+                    }
+
+                    return {
+                        content: [{ type: 'text', text: message }],
+                        isError: true
+                    };
+                }
             }
 
             default:

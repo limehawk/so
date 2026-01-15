@@ -12,13 +12,21 @@ SuperOps IT Teams is for **internal IT departments** - IT teams within a single 
 
 ## Installation
 
+We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
+
 ```bash
+# Using bunx (recommended)
+bunx superops-it
+
+# Using npx
 npx superops-it
 ```
 
 Or install globally:
 
 ```bash
+bun install -g superops-it
+# or
 npm install -g superops-it
 ```
 
@@ -27,10 +35,27 @@ npm install -g superops-it
 ### Claude Code
 
 ```bash
+# Using bunx (recommended)
+claude mcp add superops-it -- bunx superops-it
+
+# Using npx
 claude mcp add superops-it -- npx -y superops-it
 ```
 
 Or add to `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "superops-it": {
+      "command": "bunx",
+      "args": ["superops-it"]
+    }
+  }
+}
+```
+
+Or with npx:
 
 ```json
 {
@@ -46,6 +71,19 @@ Or add to `~/.claude/settings.json`:
 ### Claude Desktop
 
 Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+
+```json
+{
+  "mcpServers": {
+    "superops-it": {
+      "command": "bunx",
+      "args": ["superops-it"]
+    }
+  }
+}
+```
+
+Or with npx:
 
 ```json
 {

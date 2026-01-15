@@ -18,7 +18,7 @@ For **Managed Service Providers** - IT companies that manage technology for mult
 - Multi-tenant (one MSP, many clients)
 - Client → Site → Assets/Tickets hierarchy
 - Billing and invoicing features
-- **Install**: `npx superops-msp`
+- **Install**: `bunx superops-msp` or `npx superops-msp`
 
 ### SuperOps IT Teams
 
@@ -27,17 +27,36 @@ For **Internal IT Departments** - IT teams within a single organization.
 - Single-tenant (one company)
 - Department → Assets/Tickets hierarchy
 - Internal service desk focus
-- **Install**: `npx superops-it`
+- **Install**: `bunx superops-it` or `npx superops-it`
 
 ## Quick Start
+
+We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
 
 ### For MSP Users
 
 ```bash
+# Using bunx (recommended)
+claude mcp add superops-msp -- bunx superops-msp
+
+# Using npx
 claude mcp add superops-msp -- npx -y superops-msp
 ```
 
 Or add to `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "superops-msp": {
+      "command": "bunx",
+      "args": ["superops-msp"]
+    }
+  }
+}
+```
+
+Or with npx:
 
 ```json
 {
@@ -53,10 +72,27 @@ Or add to `~/.claude/settings.json`:
 ### For IT Teams Users
 
 ```bash
+# Using bunx (recommended)
+claude mcp add superops-it -- bunx superops-it
+
+# Using npx
 claude mcp add superops-it -- npx -y superops-it
 ```
 
 Or add to `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "superops-it": {
+      "command": "bunx",
+      "args": ["superops-it"]
+    }
+  }
+}
+```
+
+Or with npx:
 
 ```json
 {

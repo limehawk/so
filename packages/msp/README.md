@@ -12,13 +12,21 @@ SuperOps MSP is for **Managed Service Providers** - IT companies that manage tec
 
 ## Installation
 
+We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
+
 ```bash
+# Using bunx (recommended)
+bunx superops-msp
+
+# Using npx
 npx superops-msp
 ```
 
 Or install globally:
 
 ```bash
+bun install -g superops-msp
+# or
 npm install -g superops-msp
 ```
 
@@ -27,10 +35,27 @@ npm install -g superops-msp
 ### Claude Code
 
 ```bash
+# Using bunx (recommended)
+claude mcp add superops-msp -- bunx superops-msp
+
+# Using npx
 claude mcp add superops-msp -- npx -y superops-msp
 ```
 
 Or add to `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "superops-msp": {
+      "command": "bunx",
+      "args": ["superops-msp"]
+    }
+  }
+}
+```
+
+Or with npx:
 
 ```json
 {
@@ -46,6 +71,19 @@ Or add to `~/.claude/settings.json`:
 ### Claude Desktop
 
 Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+
+```json
+{
+  "mcpServers": {
+    "superops-msp": {
+      "command": "bunx",
+      "args": ["superops-msp"]
+    }
+  }
+}
+```
+
+Or with npx:
 
 ```json
 {
