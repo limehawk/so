@@ -36,50 +36,33 @@ npm install -g superops-it
 
 ## Configuration
 
+### Environment Variables
+
+Create a `.env` file in your working directory:
+
+```bash
+# Required for execute_graphql
+SUPEROPS_API_KEY=your-api-key
+SUPEROPS_SUBDOMAIN=your-subdomain
+
+# Optional
+SUPEROPS_REGION=us          # "us" (default) or "eu"
+SUPEROPS_TIMEOUT=30000      # Request timeout in ms
+SUPEROPS_READ_ONLY=false    # Block mutations when true
+```
+
+Get your API key from **SuperOps Admin > API Settings**. Your subdomain is the prefix from your SuperOps URL (e.g., `acme` from `acme.superops.ai`).
+
 ### Claude Code
 
 ```bash
-claude mcp add superops-it -- bunx superops-it
+claude mcp add superops-it -- bunx superops-it@latest
 ```
 
 Or with npx:
 
 ```bash
-claude mcp add superops-it -- npx -y superops-it
-```
-
-Or add to `~/.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "superops-it": {
-      "command": "bunx",
-      "args": ["superops-it"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
-    }
-  }
-}
-```
-
-Or with npx:
-
-```json
-{
-  "mcpServers": {
-    "superops-it": {
-      "command": "npx",
-      "args": ["-y", "superops-it"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
-    }
-  }
-}
+claude mcp add superops-it -- npx -y superops-it@latest
 ```
 
 ### Claude Desktop
@@ -91,11 +74,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
   "mcpServers": {
     "superops-it": {
       "command": "bunx",
-      "args": ["superops-it"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
+      "args": ["superops-it@latest"]
     }
   }
 }
@@ -108,11 +87,7 @@ Or with npx:
   "mcpServers": {
     "superops-it": {
       "command": "npx",
-      "args": ["-y", "superops-it"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
+      "args": ["-y", "superops-it@latest"]
     }
   }
 }
@@ -158,7 +133,7 @@ list_superops_operations({ type: "all" })
 
 ### `execute_graphql`
 
-Execute a GraphQL query or mutation against the SuperOps API. Requires `SUPEROPS_API_KEY` environment variable.
+Execute a GraphQL query or mutation against the SuperOps API. Requires environment variables (see [Configuration](#configuration)).
 
 ```
 execute_graphql({
@@ -170,16 +145,6 @@ execute_graphql({
   variables: { input: { subject: "New ticket", departmentId: "456" } }
 })
 ```
-
-**Environment variables:**
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `SUPEROPS_API_KEY` | Yes | Your SuperOps API key |
-| `SUPEROPS_SUBDOMAIN` | Yes | Your SuperOps subdomain (e.g., `acme` from `acme.superops.ai`) |
-| `SUPEROPS_REGION` | No | `us` (default) or `eu` |
-| `SUPEROPS_TIMEOUT` | No | Request timeout in ms (default: 30000) |
-| `SUPEROPS_READ_ONLY` | No | Set to `true` to block mutations |
 
 **API limits and notes:**
 - Maximum 800 API requests per minute

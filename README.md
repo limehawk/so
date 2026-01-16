@@ -33,97 +33,34 @@ For **Internal IT Departments** - IT teams within a single organization.
 
 We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
 
-### For MSP Users
+### 1. Add the MCP Server
+
+**For MSP Users:**
 
 ```bash
-claude mcp add superops-msp -- bunx superops-msp
+claude mcp add superops-msp -- bunx superops-msp@latest
 ```
 
-Or with npx:
+**For IT Teams Users:**
 
 ```bash
-claude mcp add superops-msp -- npx -y superops-msp
+claude mcp add superops-it -- bunx superops-it@latest
 ```
 
-Or add to `~/.claude/settings.json`:
+### 2. Configure Environment (for API execution)
 
-```json
-{
-  "mcpServers": {
-    "superops-msp": {
-      "command": "bunx",
-      "args": ["superops-msp"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
-    }
-  }
-}
-```
-
-Or with npx:
-
-```json
-{
-  "mcpServers": {
-    "superops-msp": {
-      "command": "npx",
-      "args": ["-y", "superops-msp"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
-    }
-  }
-}
-```
-
-### For IT Teams Users
+Create a `.env` file in your working directory:
 
 ```bash
-claude mcp add superops-it -- bunx superops-it
+SUPEROPS_API_KEY=your-api-key
+SUPEROPS_SUBDOMAIN=your-subdomain
 ```
 
-Or with npx:
+Get your API key from **SuperOps Admin > API Settings**. Your subdomain is the prefix from your SuperOps URL (e.g., `acme` from `acme.superops.ai`).
 
-```bash
-claude mcp add superops-it -- npx -y superops-it
-```
-
-Or add to `~/.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "superops-it": {
-      "command": "bunx",
-      "args": ["superops-it"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
-    }
-  }
-}
-```
-
-Or with npx:
-
-```json
-{
-  "mcpServers": {
-    "superops-it": {
-      "command": "npx",
-      "args": ["-y", "superops-it"],
-      "env": {
-        "SUPEROPS_API_KEY": "your-api-key",
-        "SUPEROPS_SUBDOMAIN": "your-subdomain"
-      }
-    }
-  }
-}
-```
+See the package READMEs for full configuration options:
+- [superops-msp README](./packages/msp/README.md)
+- [superops-it README](./packages/it/README.md)
 
 ## Available Tools
 

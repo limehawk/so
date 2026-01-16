@@ -4,6 +4,10 @@ node_modules/
 # Environment (contains API keys)
 .env
 .env.local
+.env*.local
+
+# Lock files (using bun)
+package-lock.json
 
 # Project docs (internal planning)
 /docs/
@@ -27,3 +31,6 @@ Thumbs.db
 
 # Debug
 debug-*.png
+
+# Claude Code
+.claude/
