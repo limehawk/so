@@ -21,19 +21,6 @@ let firstCategoryLine = lines.findIndex(line =>
     line.trim() === 'Queries' || line.trim() === 'Mutations' || line.trim() === 'Types'
 );
 
-// Save introduction as JSON
-if (firstCategoryLine > 0) {
-    const introLines = lines.slice(0, firstCategoryLine);
-    const intro = {
-        title: PRODUCT_TITLE,
-        description: introLines.find(l => l.includes('Welcome'))?.trim() || '',
-        contact: "support@superops.com",
-        endpoints: ENDPOINTS
-    };
-    await writeFile(`${OUTPUT_BASE}/introduction.json`, JSON.stringify(intro, null, 2));
-    console.log(`Created: ${OUTPUT_BASE}/introduction.json`);
-}
-
 // Parse items
 let currentCategory = null;
 let currentItem = null;

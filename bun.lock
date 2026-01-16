@@ -4,9 +4,6 @@
   "workspaces": {
     "": {
       "name": "superops-mcp-monorepo",
-      "devDependencies": {
-        "@modelcontextprotocol/sdk": "^1.25.2",
-      },
     },
     "packages/it": {
       "name": "superops-it",

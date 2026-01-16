@@ -8,8 +8,5 @@
     "build:msp": "node scripts/split-docs-msp.mjs",
     "build:it": "node scripts/split-docs-it.mjs",
     "build": "npm run build:msp && npm run build:it"
-  },
-  "devDependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.2"
   }
 }
