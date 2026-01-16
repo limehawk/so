@@ -31,13 +31,10 @@
     "url": "https://github.com/limehawk/superops-mcp/issues"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.2",
-    "dotenv": "^16.4.7"
+    "@modelcontextprotocol/sdk": "^1.25.2"
   },
   "files": [
     "src/",
-    "docs/api-index.json",
-    "docs/introduction.json",
-    ".env.example"
+    "docs/api-index.json"
   ]
 }

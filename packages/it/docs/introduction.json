@@ -1,9 +1,0 @@
-{
-  "title": "SuperOps IT Teams GraphQL API",
-  "description": "Welcome to the Superops IT GraphQL API reference! This reference includes the complete set of GraphQL types, queries, mutations, and their parameters. For more tutorial-oriented API documentation, please check out our API Guide",
-  "contact": "support@superops.com",
-  "endpoints": {
-    "us": "https://api.superops.ai/it",
-    "eu": "https://euapi.superops.ai/it"
-  }
-}
