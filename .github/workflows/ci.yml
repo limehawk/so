@@ -74,7 +74,11 @@ jobs:
       - name: Publish superops-msp
         run: npm publish --provenance --access public
         working-directory: packages/msp
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish superops-it
         run: npm publish --provenance --access public
         working-directory: packages/it
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
