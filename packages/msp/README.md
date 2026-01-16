@@ -15,13 +15,13 @@ SuperOps MSP is for **Managed Service Providers** - IT companies that manage tec
 We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
 
 ```bash
-bunx superops-msp
+bunx superops-msp@latest
 ```
 
 Or with npx:
 
 ```bash
-npx superops-msp
+npx superops-msp@latest
 ```
 
 Or install globally:

@@ -18,7 +18,7 @@ For **Managed Service Providers** - IT companies that manage technology for mult
 - Multi-tenant (one MSP, many clients)
 - Client → Site → Assets/Tickets hierarchy
 - Billing and invoicing features
-- **Install**: `bunx superops-msp` or `npx superops-msp`
+- **Install**: `bunx superops-msp@latest` or `npx superops-msp@latest`
 
 ### SuperOps IT Teams
 
@@ -27,7 +27,7 @@ For **Internal IT Departments** - IT teams within a single organization.
 - Single-tenant (one company)
 - Department → Assets/Tickets hierarchy
 - Internal service desk focus
-- **Install**: `bunx superops-it` or `npx superops-it`
+- **Install**: `bunx superops-it@latest` or `npx superops-it@latest`
 
 ## Quick Start
 

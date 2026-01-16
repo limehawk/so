@@ -15,13 +15,13 @@ SuperOps IT Teams is for **internal IT departments** - IT teams within a single 
 We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
 
 ```bash
-bunx superops-it
+bunx superops-it@latest
 ```
 
 Or with npx:
 
 ```bash
-npx superops-it
+npx superops-it@latest
 ```
 
 Or install globally:
