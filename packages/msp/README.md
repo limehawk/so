@@ -36,33 +36,13 @@ npm install -g superops-msp
 
 ## Configuration
 
-### Environment Variables
-
-Create a `.env` file in your working directory:
-
-```bash
-# Required for execute_graphql
-SUPEROPS_API_KEY=your-api-key
-SUPEROPS_SUBDOMAIN=your-subdomain
-
-# Optional
-SUPEROPS_REGION=us          # "us" (default) or "eu"
-SUPEROPS_TIMEOUT=30000      # Request timeout in ms
-SUPEROPS_READ_ONLY=false    # Block mutations when true
-```
-
-Get your API key from **SuperOps Admin > API Settings**. Your subdomain is the prefix from your SuperOps URL (e.g., `acme` from `acme.superops.ai`).
-
 ### Claude Code
 
 ```bash
-claude mcp add superops-msp -- bunx superops-msp@latest
-```
-
-Or with npx:
-
-```bash
-claude mcp add superops-msp -- npx -y superops-msp@latest
+claude mcp add superops-msp \
+  -e SUPEROPS_API_KEY=your-api-key \
+  -e SUPEROPS_SUBDOMAIN=your-subdomain \
+  -- bunx superops-msp@latest
 ```
 
 ### Claude Desktop
@@ -74,24 +54,27 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
   "mcpServers": {
     "superops-msp": {
       "command": "bunx",
-      "args": ["superops-msp@latest"]
+      "args": ["superops-msp@latest"],
+      "env": {
+        "SUPEROPS_API_KEY": "your-api-key",
+        "SUPEROPS_SUBDOMAIN": "your-subdomain"
+      }
     }
   }
 }
 ```
 
-Or with npx:
+### Environment Variables
 
-```json
-{
-  "mcpServers": {
-    "superops-msp": {
-      "command": "npx",
-      "args": ["-y", "superops-msp@latest"]
-    }
-  }
-}
-```
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `SUPEROPS_API_KEY` | Yes | Your SuperOps API key |
+| `SUPEROPS_SUBDOMAIN` | Yes | Your subdomain (e.g., `acme` from `acme.superops.ai`) |
+| `SUPEROPS_REGION` | No | `us` (default) or `eu` |
+| `SUPEROPS_TIMEOUT` | No | Request timeout in ms (default: 30000) |
+| `SUPEROPS_READ_ONLY` | No | Set to `true` to block mutations |
+
+Get your API key from **SuperOps Admin > API Settings**.
 
 ## Available Tools
 

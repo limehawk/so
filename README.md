@@ -33,27 +33,22 @@ For **Internal IT Departments** - IT teams within a single organization.
 
 We recommend using [bun](https://bun.sh) for faster startup times - MCP servers start on every request, so speed matters.
 
-### 1. Add the MCP Server
-
 **For MSP Users:**
 
 ```bash
-claude mcp add superops-msp -- bunx superops-msp@latest
+claude mcp add superops-msp \
+  -e SUPEROPS_API_KEY=your-api-key \
+  -e SUPEROPS_SUBDOMAIN=your-subdomain \
+  -- bunx superops-msp@latest
 ```
 
 **For IT Teams Users:**
 
 ```bash
-claude mcp add superops-it -- bunx superops-it@latest
-```
-
-### 2. Configure Environment (for API execution)
-
-Create a `.env` file in your working directory:
-
-```bash
-SUPEROPS_API_KEY=your-api-key
-SUPEROPS_SUBDOMAIN=your-subdomain
+claude mcp add superops-it \
+  -e SUPEROPS_API_KEY=your-api-key \
+  -e SUPEROPS_SUBDOMAIN=your-subdomain \
+  -- bunx superops-it@latest
 ```
 
 Get your API key from **SuperOps Admin > API Settings**. Your subdomain is the prefix from your SuperOps URL (e.g., `acme` from `acme.superops.ai`).
