@@ -8,11 +8,15 @@ import {
 import { readFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { createRequire } from 'module';
 import { SuperOpsClient, SuperOpsAPIError } from './client.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+const pkg = require('../package.json');
+
 const SERVER_NAME = 'superops-it';
-const SERVER_VERSION = '1.0.0';
+const SERVER_VERSION = pkg.version;
 const PRODUCT_NAME = 'SuperOps IT Teams';
 
 // API data cache
