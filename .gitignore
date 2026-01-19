@@ -34,3 +34,4 @@ debug-*.png
 
 # Claude Code
 .claude/
+CLAUDE.md
