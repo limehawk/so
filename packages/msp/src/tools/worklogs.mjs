@@ -903,16 +903,24 @@ function buildVisibilityInput(visibility) {
   const input = {};
 
   if (visibility.portalType) input.portalType = visibility.portalType;
-  if (visibility.clientSharedType) input.clientSharedType = visibility.clientSharedType;
-  if (visibility.accountId) input.accountId = visibility.accountId;
-  if (visibility.siteSharedType) input.siteSharedType = visibility.siteSharedType;
-  if (visibility.siteId) input.siteId = visibility.siteId;
-  if (visibility.userRoleSharedType) input.userRoleSharedType = visibility.userRoleSharedType;
-  if (visibility.addedRoleIds) input.addedRoleIds = visibility.addedRoleIds;
-  if (visibility.userSharedType) input.userSharedType = visibility.userSharedType;
-  if (visibility.addedUserIds) input.addedUserIds = visibility.addedUserIds;
-  if (visibility.groupSharedType) input.groupSharedType = visibility.groupSharedType;
-  if (visibility.addedGroupIds) input.addedGroupIds = visibility.addedGroupIds;
+
+  // For TECHNICIAN portal, both userSharedType and groupSharedType are required
+  if (visibility.portalType === 'TECHNICIAN') {
+    input.userSharedType = visibility.userSharedType || 'AllUsers';
+    input.groupSharedType = visibility.groupSharedType || 'AllGroups';
+    if (visibility.addedUserIds) input.addedUserIds = visibility.addedUserIds;
+    if (visibility.addedGroupIds) input.addedGroupIds = visibility.addedGroupIds;
+  }
+
+  // For REQUESTER portal, include client/site/role settings
+  if (visibility.portalType === 'REQUESTER') {
+    if (visibility.clientSharedType) input.clientSharedType = visibility.clientSharedType;
+    if (visibility.accountId) input.accountId = visibility.accountId;
+    if (visibility.siteSharedType) input.siteSharedType = visibility.siteSharedType;
+    if (visibility.siteId) input.siteId = visibility.siteId;
+    if (visibility.userRoleSharedType) input.userRoleSharedType = visibility.userRoleSharedType;
+    if (visibility.addedRoleIds) input.addedRoleIds = visibility.addedRoleIds;
+  }
 
   return input;
 }
