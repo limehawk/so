@@ -585,7 +585,7 @@
     {
       "name": "getClientUserAssociationList",
       "type": "query",
-      "description": "Fetches a list of client user associations.",
+      "description": "Fetches a list of client user associations. IMPORTANT: SuperOps stores user-to-client/site relationships in a separate associations table. The client and site fields on ClientUser records are often null - use this query to get the real client/site data. A user can have multiple associations (same person at multiple client/site combinations).",
       "returns": "ClientUserAssociationList",
       "arguments": [
         {
@@ -594,9 +594,47 @@
           "description": ""
         }
       ],
-      "graphql": "query getClientUserAssociationList($input: ListInfoInput!) {\n  getClientUserAssociationList(input: $input) {\n    associations {\n      ...ClientUserAssociationFragment\n    }\n    listInfo {\n      ...ListInfoFragment\n    }\n  }\n}",
-      "variables": "{\"input\": ListInfoInput}",
-      "exampleResponse": "{\n  \"data\": {\n    \"getClientUserAssociationList\": {\n      \"associations\": [ClientUserAssociation],\n      \"listInfo\": ListInfo\n    }\n  }\n}"
+      "graphql": "query getClientUserAssociationList($input: ListInfoInput!) {\n  getClientUserAssociationList(input: $input) {\n    associations {\n      id\n      client { accountId name }\n      site { id name }\n      user { userId name email }\n    }\n    listInfo {\n      page\n      pageSize\n      totalCount\n    }\n  }\n}",
+      "variables": {
+        "input": {
+          "page": 1,
+          "pageSize": 10,
+          "condition": {
+            "attribute": "user.userId",
+            "operator": "is",
+            "value": "USER_ID_HERE"
+          }
+        }
+      },
+      "exampleResponse": {
+        "data": {
+          "getClientUserAssociationList": {
+            "associations": [
+              {
+                "id": "123456789",
+                "client": {
+                  "accountId": "7928838372746166998",
+                  "name": "Acme Corp"
+                },
+                "site": {
+                  "id": "7928838372746169876",
+                  "name": "HQ Office"
+                },
+                "user": {
+                  "userId": "2054960186819178496",
+                  "name": "John Smith",
+                  "email": "john.smith@acme.com"
+                }
+              }
+            ],
+            "listInfo": {
+              "page": 1,
+              "pageSize": 10,
+              "totalCount": 1
+            }
+          }
+        }
+      }
     },
     {
       "name": "getClientUserList",
@@ -4933,7 +4971,7 @@
       "name": "ClientUserAssociation",
       "type": "type",
       "kind": "object",
-      "description": "All the clients and sites associated with a client user. A client user can have one or more associations.",
+      "description": "Represents a user's association with a specific client and site. IMPORTANT: A single user can have multiple associations (e.g., working at multiple client sites). When getClientUserList returns users with null client/site fields, query their associations here to get the real data.",
       "fields": [
         {
           "name": "id",
