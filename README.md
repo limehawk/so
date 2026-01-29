@@ -59,7 +59,27 @@ See the package READMEs for full configuration options:
 
 ## Available Tools
 
-Both packages provide these tools:
+### SuperOps MSP (84 tools)
+
+The MSP package includes comprehensive tools for:
+
+| Category | Tools | Description |
+|----------|-------|-------------|
+| Tickets | 19 | Create, update, reply, assign, close tickets |
+| Assets | 14 | View assets, software, patches, run scripts |
+| Clients | 11 | Manage clients, contacts, sites |
+| Alerts | 4 | View and resolve RMM alerts |
+| Worklogs | 4 | Track time against tickets |
+| Knowledge Base | 6 | Manage KB articles and collections |
+| Scripts | 8 | Discover and execute scripts on assets |
+| Lookups | 13 | Get valid values for statuses, priorities, etc. |
+| API Docs | 5 | Search and explore the raw GraphQL API |
+
+See the [MSP README](./packages/msp/README.md) for the full tool list.
+
+### SuperOps IT Teams (5 tools)
+
+The IT package provides API documentation tools:
 
 | Tool | Description |
 |------|-------------|
@@ -67,7 +87,9 @@ Both packages provide these tools:
 | `get_superops_operation` | Get full details of a query or mutation |
 | `get_superops_type` | Get type definitions with all fields |
 | `list_superops_operations` | List all available operations |
-| `execute_graphql` | Execute a GraphQL query or mutation (requires API key) |
+| `execute_graphql` | Execute a GraphQL query or mutation |
+
+See the [IT README](./packages/it/README.md) for details.
 
 ## API Endpoints
 
@@ -89,4 +111,4 @@ superops-mcp/
 
 ## License
 
-MIT
+GPL-3.0

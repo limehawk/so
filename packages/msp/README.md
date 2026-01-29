@@ -113,58 +113,136 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 
 Get your API key from **SuperOps Admin > API Settings**.
 
-## Available Tools
+## Available Tools (84 total)
 
-### `search_superops_api`
+### Tickets (19 tools)
 
-Search the API documentation for queries, mutations, and types.
+| Tool | Description |
+|------|-------------|
+| `get_ticket` | Get full details of a specific ticket |
+| `get_open_tickets` | List open tickets with optional filters |
+| `get_my_tickets` | Get tickets assigned to a technician |
+| `get_new_tickets` | Get tickets created within the last N hours |
+| `get_urgent_tickets` | Get high priority or SLA-violated tickets |
+| `get_tickets_by_client` | Get all tickets for a specific client |
+| `get_ticket_conversation` | Get the full conversation thread |
+| `get_ticket_notes` | Get internal notes on a ticket |
+| `create_ticket` | Create a new ticket |
+| `reply_to_ticket` | Send a reply to the requester |
+| `add_ticket_note` | Add an internal or public note |
+| `update_ticket_status` | Change ticket status |
+| `update_ticket_priority` | Change ticket priority |
+| `update_ticket_category` | Change ticket category/subcategory |
+| `assign_ticket` | Assign to technician and/or group |
+| `change_ticket_requester` | Change who the ticket is for |
+| `add_ticket_follower` | Add a technician as follower |
+| `close_ticket` | Close with optional resolution code |
+| `delete_ticket` | Soft delete (trash) a ticket |
 
-```
-search_superops_api({ query: "ticket" })
-```
+### Assets (14 tools)
 
-### `get_superops_operation`
+| Tool | Description |
+|------|-------------|
+| `get_asset` | Get full details of an asset |
+| `get_assets` | List assets with filters |
+| `get_asset_summary` | Quick overview (CPU, memory, disk, network) |
+| `get_asset_software` | List installed software |
+| `get_asset_patches` | Patch status and details |
+| `get_asset_disks` | Disk/partition details |
+| `get_asset_activity` | Full activity log |
+| `get_asset_script_history` | Script execution history |
+| `get_asset_patch_history` | Patch operation history |
+| `get_asset_user_log` | User login/logout history |
+| `get_unmonitored_assets` | Assets not being monitored |
+| `update_asset` | Update asset metadata |
+| `assign_device_category` | Categorize assets |
+| `delete_asset` | Remove an asset |
 
-Get full details of a specific query or mutation.
+### Clients (11 tools)
 
-```
-get_superops_operation({ name: "getTicket" })
-get_superops_operation({ name: "createClient" })
-```
+| Tool | Description |
+|------|-------------|
+| `get_client` | Get full details of a client |
+| `get_clients` | List all clients with filtering |
+| `get_client_sites` | List sites/locations for a client |
+| `get_client_users` | List contacts/users for a client |
+| `get_client_contracts` | List contracts for a client |
+| `create_client` | Create a new client with HQ site |
+| `create_client_user` | Add a contact to a client |
+| `create_client_site` | Add a site to a client |
+| `update_client` | Update client information |
+| `update_client_user` | Update a client contact |
+| `search_contacts` | Search contacts across all clients |
 
-### `get_superops_type`
+### Alerts (4 tools)
 
-Get full details of a type definition.
+| Tool | Description |
+|------|-------------|
+| `get_alerts` | List all RMM alerts |
+| `get_asset_alerts` | Get alerts for a specific asset |
+| `resolve_alerts` | Mark alerts as resolved |
+| `create_alert` | Create a manual alert on an asset |
 
-```
-get_superops_type({ name: "Ticket" })
-get_superops_type({ name: "Client" })
-```
+### Worklogs (4 tools)
 
-### `list_superops_operations`
+| Tool | Description |
+|------|-------------|
+| `get_worklogs` | Fetch worklog entries |
+| `add_worklog` | Log time against a ticket |
+| `update_worklog` | Edit a worklog entry |
+| `delete_worklog` | Remove a worklog entry |
 
-List all available operations.
+### Knowledge Base (6 tools)
 
-```
-list_superops_operations({ type: "queries" })
-list_superops_operations({ type: "mutations" })
-list_superops_operations({ type: "all" })
-```
+| Tool | Description |
+|------|-------------|
+| `search_kb` | Search KB articles and collections |
+| `get_kb_article` | Get full article details |
+| `create_kb_article` | Create a new KB article |
+| `update_kb_article` | Edit an existing article |
+| `create_kb_collection` | Create a collection/folder |
+| `delete_kb_article` | Remove an article |
 
-### `execute_graphql`
+### Scripts (8 tools)
 
-Execute a GraphQL query or mutation against the SuperOps API. Requires environment variables (see [Configuration](#configuration)).
+| Tool | Description |
+|------|-------------|
+| `list_scripts` | List all scripts with metadata |
+| `list_scripts_by_os` | List scripts for an OS (Windows/Mac/Linux) |
+| `list_scripts_by_language` | List scripts by language (PowerShell/Bash/etc) |
+| `list_scripts_by_tag` | List scripts by tag/category |
+| `search_scripts` | Search scripts by name or description |
+| `get_script` | Get full script details |
+| `run_script` | Run a script on an asset |
+| `get_script_runs` | Get script execution history |
 
-```
-execute_graphql({
-  operation: "query { getTicket(id: \"123\") { id subject status } }"
-})
+### Lookups (13 tools)
 
-execute_graphql({
-  operation: "mutation createTicket($input: CreateTicketInput!) { createTicket(input: $input) { id } }",
-  variables: { input: { subject: "New ticket", clientId: "456" } }
-})
-```
+| Tool | Description |
+|------|-------------|
+| `get_statuses` | Get valid ticket statuses |
+| `get_priorities` | Get priority levels |
+| `get_categories` | Get ticket categories/subcategories |
+| `get_causes` | Get ticket causes/subcauses |
+| `get_impacts` | Get impact levels |
+| `get_urgencies` | Get urgency levels |
+| `get_resolution_codes` | Get resolution codes |
+| `get_slas` | Get available SLAs |
+| `get_technicians` | Get list of technicians |
+| `get_technician_groups` | Get technician groups |
+| `get_teams` | Get teams |
+| `get_device_categories` | Get device categories for assets |
+| `get_client_stages` | Get client lifecycle stages |
+
+### API Documentation (5 tools)
+
+| Tool | Description |
+|------|-------------|
+| `search_superops_api` | Search queries, mutations, and types |
+| `get_superops_operation` | Get full details of a query or mutation |
+| `get_superops_type` | Get type definitions with all fields |
+| `list_superops_operations` | List all available operations |
+| `execute_graphql` | Execute a raw GraphQL query or mutation |
 
 **API limits and notes:**
 - Maximum 800 API requests per minute
@@ -191,4 +269,4 @@ Once configured, ask Claude:
 
 ## License
 
-MIT
+GPL-3.0

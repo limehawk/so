@@ -154,4 +154,4 @@ Once configured, ask Claude:
 
 ## License
 
-MIT
+GPL-3.0
